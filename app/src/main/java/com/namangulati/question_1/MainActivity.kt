@@ -25,12 +25,11 @@ class MainActivity : AppCompatActivity() {
             {
              return Pair(0.0,income)
             }
-            else
-            {
+
                 deduct=taxRate*(0.01)*income;
                 finalincome=income-deduct;
-            }
-            return Pair(deduct, income)
+
+            return Pair(deduct, finalincome)
         }
     }
 

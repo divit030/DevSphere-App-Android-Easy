@@ -14,7 +14,23 @@ class MainActivity : AppCompatActivity() {
     companion object {
         fun calculateTax(income: Double, taxRate: Double): Pair<Double, Double> {
             // TODO: Implement tax calculation
-            return Pair(0.0, 0.0)
+            var finalincome=0.0;
+            var deduct=0.0;
+            if(income==0.0)
+            {
+                return Pair(0.0,0.0);
+            }
+
+            if(taxRate==0.0)
+            {
+             return Pair(0.0,income)
+            }
+            else
+            {
+                deduct=taxRate*(0.01)*income;
+                finalincome=income-deduct;
+            }
+            return Pair(deduct, income)
         }
     }
 
@@ -28,16 +44,18 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // val etIncome      = 
-        // val etTaxRate     = 
-        // val btnCalculate  = 
-        // val tvTaxAmount   = 
-        // val tvFinalIncome = 
+         val etIncome      =((findViewById<EditText>(R.id.etIncome)).toString()).toDouble();
+         val etTaxRate     =((findViewById<EditText>(R.id.etTaxRate)).toString()).toDouble();
+         val btnCalculate  =findViewById<Button>(R.id.btnCalculate)
+         var tvTaxAmount=0.0
+         var tvFinalIncome =0.0
 
         btnCalculate.setOnClickListener {
             // val income 
             // val rate   
-
+            tvTaxAmount=calculateTax(income = etIncome, taxRate = etTaxRate).first;
+            tvFinalIncome=calculateTax(income = etIncome, taxRate = etTaxRate).second;
+            println("Calculated tax: $tvTaxAmount , Final Income: $tvFinalIncome");
             // TODO: Call calculateTax and update tvTaxAmount, tvFinalIncome
         }
     }
